@@ -13,7 +13,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	//Configuração da classe que possui o caminho para acessar as views
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {AppWebConfiguration.class};
+		return new Class[] {AppWebConfiguration.class, JPAConfiguration.class};
 	}
 
 	//Configuração dos endereços que serão atendidos pelo spring

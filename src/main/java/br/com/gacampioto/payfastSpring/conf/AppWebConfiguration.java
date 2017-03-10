@@ -6,9 +6,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.gacampioto.payfastSpring.controllers.HomeController;
+import br.com.gacampioto.payfastSpring.daos.PagamentoDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class})
+@ComponentScan(basePackageClasses={HomeController.class, PagamentoDAO.class})
 public class AppWebConfiguration {
 
 	//Configuração do caminho necessário para que o Spring encontre nossas views
