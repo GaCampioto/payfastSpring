@@ -1,5 +1,7 @@
 package br.com.gacampioto.payfastSpring.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -17,5 +19,9 @@ public class PagamentoDAO {
 	
 	public void gravar(Pagamento pagamento){
 		manager.persist(pagamento);
+	}
+
+	public List<Pagamento> getPagamentos() {
+		return manager.createQuery("Select p from Pagamento p", Pagamento.class).getResultList();
 	}
 }
