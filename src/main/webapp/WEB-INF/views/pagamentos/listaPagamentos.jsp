@@ -14,7 +14,7 @@
 		<tr>
 			<td>Forma de pagamento</td>
 			<td>Descrição</td>
-			<td>Data</td>
+			<!--  <td>Data</td>-->
 			<td>Valor</td>
 			<td>Moeda</td>
 			<td>Status</td>
@@ -22,7 +22,7 @@
 			<tr>
 				<td>${pagamento.formaPagamento}</td>
 				<td>${pagamento.descricao}</td>
-				<td>${pagamento.data}</td>
+				<!-- <td>${pagamento.data}</td> -->
 				<td>${pagamento.valor}</td>
 				<td>${pagamento.moeda}</td>
 				<td>${pagamento.status}</td>

@@ -1,15 +1,12 @@
 package br.com.gacampioto.payfastSpring.models;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.transaction.Transactional;
 
 @Entity
 public class Pagamento {
@@ -21,7 +18,7 @@ public class Pagamento {
 	private String moeda;
 	private String status;
 	private String descricao;
-	private Date data;
+	private Calendar data;
 	
 	public int getId() {
 		return id;
@@ -59,16 +56,17 @@ public class Pagamento {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getData() {
+	
+	public Calendar getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(Calendar data) {
 		this.data = data;
 	}
 	
 	@Override
 	public String toString() {
 		return "Pagamento [id=" + id + ", formaPagamento=" + formaPagamento + ", valor=" + valor + ", moeda=" + moeda
-				+ ", status=" + status + ", descricao=" + descricao + ", data=" + data + "]";
+				+ ", status=" + status + ", descricao=" + descricao + "]";
 	}
 }

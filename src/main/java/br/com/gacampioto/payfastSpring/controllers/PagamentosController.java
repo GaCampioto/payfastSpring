@@ -4,8 +4,13 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,22 +18,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.gacampioto.payfastSpring.daos.PagamentoDAO;
 import br.com.gacampioto.payfastSpring.models.Pagamento;
+import br.com.gacampioto.payfastSpring.validation.PagamentoValidation;
 
 @Controller
-@RequestMapping("pagamentos")
+@RequestMapping("/pagamentos")
 public class PagamentosController {
 	
 	@Autowired
 	PagamentoDAO pagamentoDAO;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		binder.addValidators(new PagamentoValidation());
+	}
+	
 	@RequestMapping("/formCadastro")
-	public String getForm(){
-		return "pagamentos/formCadastro";
+	public ModelAndView getForm(Pagamento pagamento){
+		return new ModelAndView("pagamentos/formCadastro");
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView salvar(Pagamento pagamento, RedirectAttributes redirectAttributes){
-		pagamento.setData(Date.valueOf(LocalDate.now()));
+	public ModelAndView salvar(@Valid Pagamento pagamento, BindingResult result, RedirectAttributes redirectAttributes){
+		
+		if(result.hasErrors()){
+			return getForm(pagamento);
+		}
 		pagamentoDAO.gravar(pagamento);
 		redirectAttributes.addFlashAttribute("sucesso", "Pagamento cadastrado com sucesso!");
 		

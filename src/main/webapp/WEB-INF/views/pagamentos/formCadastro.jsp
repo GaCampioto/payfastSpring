@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>  
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,25 +9,38 @@
 <title>Interface web para o payfast</title>
 </head>
 <body>
-	<form action="/payfastSpring/pagamentos" method="post">
+	<form:form action="${s:mvcUrl('PC#salvar').build() }" method="post" commandName="pagamento">
 		<div>
-			<label>Forma de pagamento</label> <input type="text"
-				name="formaPagamento" />
+			<label>Forma de Pagamento</label>
+			<form:input path="formaPagamento"/>
+			<form:errors path="formaPagamento"/>
 		</div>
 		<div>
-			<label>Valor</label> <input type="text" name="valor" />
+			<label>Valor</label>
+			<form:errors path="valor"/>
+			<form:input path="valor"/>
 		</div>
 		<div>
-			<label>Moeda</label> <input type="text" name="moeda" maxlength="3" />
+			<label>Moeda</label>		
+			<form:input path="moeda"/>
+			<form:errors path="moeda"/>
 		</div>
 		<div>
-			<label>Status</label> <input type="text" name="status" />
+			<label>Status</label>
+			<form:input path="status"/>
+			<form:errors path="status"/>
 		</div>
 		<div>
 			<label>Descrição</label>
-			<textarea rows="10" cols="20" name="descricao"></textarea>
+			<form:textarea rows="2" cols="20" path="descricao"/>
+			<form:errors path="descricao"/>
+		</div>
+		<div>
+			<label>Data</label>
+			<form:input path="data"/>
+			<form:errors path="data"/>
 		</div>
 		<button type="submit">Cadastrar</button>
-	</form>
+	</form:form>
 </body>
 </html>
