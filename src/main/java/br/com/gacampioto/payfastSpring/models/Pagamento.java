@@ -19,6 +19,7 @@ public class Pagamento {
 	private String status;
 	private String descricao;
 	private Calendar data;
+	private String comprovantePath;
 	
 	public int getId() {
 		return id;
@@ -64,6 +65,12 @@ public class Pagamento {
 		this.data = data;
 	}
 	
+	public String getComprovantePath() {
+		return comprovantePath;
+	}
+	public void setComprovantePath(String comprovantePath) {
+		this.comprovantePath = comprovantePath;
+	}
 	@Override
 	public String toString() {
 		return "Pagamento [id=" + id + ", formaPagamento=" + formaPagamento + ", valor=" + valor + ", moeda=" + moeda

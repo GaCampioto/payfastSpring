@@ -8,14 +8,19 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.gacampioto.payfastSpring.controllers.HomeController;
 import br.com.gacampioto.payfastSpring.daos.PagamentoDAO;
+import br.com.gacampioto.payfastSpring.infra.FileSaver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, PagamentoDAO.class})
+@ComponentScan(basePackageClasses={HomeController.class, PagamentoDAO.class, FileSaver.class})
 public class AppWebConfiguration {
 
 	//Configuração do caminho necessário para que o Spring encontre nossas views
@@ -50,6 +55,12 @@ public class AppWebConfiguration {
 		
 		return conversionService;
 		
+	}
+	
+	//Configurando "recebedor de arquivos"
+	@Bean
+	public MultipartResolver multipartResolver(){
+		return new StandardServletMultipartResolver();
 	}
 }
 

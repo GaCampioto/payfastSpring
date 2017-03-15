@@ -9,7 +9,8 @@
 <title>Interface web para o payfast</title>
 </head>
 <body>
-	<form:form action="${s:mvcUrl('PC#salvar').build() }" method="post" commandName="pagamento">
+	<form:form action="${s:mvcUrl('PC#salvar').build() }" method="post" 
+	commandName="pagamento" enctype="multipart/form-data">
 		<div>
 			<label>Forma de Pagamento</label>
 			<form:input path="formaPagamento"/>
@@ -39,6 +40,10 @@
 			<label>Data</label>
 			<form:input path="data"/>
 			<form:errors path="data"/>
+		</div>
+		<div>
+			<label>Comprovante Pagamento</label>
+			<input type="file" name="comprovante"/>
 		</div>
 		<button type="submit">Cadastrar</button>
 	</form:form>

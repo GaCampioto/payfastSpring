@@ -18,6 +18,7 @@
 			<td>Valor</td>
 			<td>Moeda</td>
 			<td>Status</td>
+			<td>Comprovante</td>
 		<c:forEach items="${pagamentos}" var="pagamento">
 			<tr>
 				<td>${pagamento.formaPagamento}</td>
@@ -26,6 +27,7 @@
 				<td>${pagamento.valor}</td>
 				<td>${pagamento.moeda}</td>
 				<td>${pagamento.status}</td>
+				<td>${pagamento.comprovantePath}</td>
 			<tr>
 		</c:forEach>
 	</table>
