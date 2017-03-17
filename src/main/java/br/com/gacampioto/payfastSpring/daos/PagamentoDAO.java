@@ -24,4 +24,9 @@ public class PagamentoDAO {
 	public List<Pagamento> getPagamentos() {
 		return manager.createQuery("Select p from Pagamento p", Pagamento.class).getResultList();
 	}
+
+	public Pagamento find(Integer id) {
+		Pagamento pagamento = manager.createQuery("Select p from Pagamento p Where p.id = :id", Pagamento.class).setParameter("id", id).getSingleResult();
+		return pagamento;
+	}
 }

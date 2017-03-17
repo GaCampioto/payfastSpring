@@ -1,7 +1,5 @@
 package br.com.gacampioto.payfastSpring.controllers;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +39,14 @@ public class PagamentosController {
 	@RequestMapping("/formCadastro")
 	public ModelAndView getForm(Pagamento pagamento){
 		return new ModelAndView("pagamentos/formCadastro");
+	}
+	
+	@RequestMapping("/detalhes/{id}")
+	public ModelAndView getDetails(@PathVariable("id") Integer id){
+		ModelAndView modelAndView = new ModelAndView("pagamentos/detalhes");
+		Pagamento pagamento = pagamentoDAO.find(id);
+		modelAndView.addObject("pagamento", pagamento);
+		return modelAndView;
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
