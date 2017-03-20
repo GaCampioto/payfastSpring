@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
@@ -49,6 +50,7 @@
 
                     <ul class="clearfix">
                         <li><a href="${s:mvcUrl('PC#listarPagamento').build()}" rel="nofollow">Meus pagamentos</a></li>
+                        <a href="#">Comprovantes (${comprovante.quantidade})</a>
                     </ul>
                 </nav>
             </div>
@@ -57,13 +59,17 @@
 
     <article id="livro-css-eficiente">
           <header id="product-highlight" class="clearfix">
-            <div id="product-overview" class="container">
+            <form action='<c:url value="/comprovante" />' method="post" product-overview" class="container">
+            <input type="hidden" name="pagamentoId" value="${pagamento.id}" />
               <h1 class="product-title">${pagamento.formaPagamento }</h1>
               <p class="book-description">${pagamento.descricao }</p>
               <p class="book-description">${pagamento.moeda }</p>
               <p class="book-description">${pagamento.valor }</p>
               <p class="book-description">${pagamento.status }</p>
-            </div>
+              <p class="book-description"><fmt:formatDate pattern="dd/MM/yyyy" value="${pagamento.data.time }"/>
+              <br />
+              <button type="submit" alt="Incluir nos comprovante" title="Incluir nos comprovantes">Incluir nos comprovantes</button> 
+            </form>
           </header>
     </article>    
 

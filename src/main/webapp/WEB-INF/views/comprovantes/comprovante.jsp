@@ -10,31 +10,27 @@
 <title>Interface web para o payfast</title>
 </head>
 <body>
-	<h1>Pagamentos - Payfast</h1>
-	<div>${sucesso}</div>
-	<a href="${s:mvcUrl('CC#getComprovante').build()}" rel="nofollow">Comprovante</a>
+	<h1>Comprovantes - Payfast</h1>
+	<a href="${s:mvcUrl('PC#listarPagamento').build()}" rel="nofollow">Meus pagamentos</a>
 	<table>
 		<tr>
-			<td>Id</td>
 			<td>Forma de pagamento</td>
 			<td>Descrição</td>
 			<td>Data</td>
 			<td>Valor</td>
 			<td>Moeda</td>
 			<td>Status</td>
-			<td>Comprovante</td>
-		<c:forEach items="${pagamentos}" var="pagamento">
+		<c:forEach items="${comprovante.itens}" var="item">
 			<tr>
-				<td><a href="${s:mvcUrl('PC#getDetails').arg(0,pagamento.id).build()}">${pagamento.id }</a></td>
-				<td>${pagamento.formaPagamento}</td>
-				<td>${pagamento.descricao}</td>
-				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${pagamento.data.time }"/></td>
-				<td>${pagamento.valor}</td>
-				<td>${pagamento.moeda}</td>
-				<td>${pagamento.status}</td>
-				<td>${pagamento.comprovantePath}</td>
+				<td>${item.pagamento.formaPagamento}</td>
+				<td>${item.pagamento.descricao}</td>
+				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${item.pagamento.data.time }"/></td>
+				<td>${item.pagamento.valor}</td>
+				<td>${item.pagamento.moeda}</td>
+				<td>${item.pagamento.status}</td>
 			<tr>
 		</c:forEach>
 	</table>
+	<div>Total dos comprovantes: ${comprovante.total}</div>
 </body>
 </html>

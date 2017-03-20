@@ -8,8 +8,6 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,9 +16,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import br.com.gacampioto.payfastSpring.controllers.HomeController;
 import br.com.gacampioto.payfastSpring.daos.PagamentoDAO;
 import br.com.gacampioto.payfastSpring.infra.FileSaver;
+import br.com.gacampioto.payfastSpring.models.Comprovante;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, PagamentoDAO.class, FileSaver.class})
+@ComponentScan(basePackageClasses={HomeController.class, PagamentoDAO.class, FileSaver.class, Comprovante.class})
 public class AppWebConfiguration {
 
 	//Configuração do caminho necessário para que o Spring encontre nossas views
@@ -31,6 +30,9 @@ public class AppWebConfiguration {
         viewResolver.setPrefix("/WEB-INF/views/");
         //Define o a extensão das nossas views
         viewResolver.setSuffix(".jsp");
+        //Define quais classes ficam disponíveis em todas as views
+        //viewResolver.setExposeContextBeansAsAttributes(true);
+        viewResolver.setExposedContextBeanNames("comprovante");
         return viewResolver;
     }
 	
