@@ -11,6 +11,7 @@
 </head>
 <body>
 	<h1>Comprovantes - Payfast</h1>
+	<p>${mensagem}</p>
 	<a href="${s:mvcUrl('PC#listarPagamento').build()}" rel="nofollow">Meus pagamentos</a>
 	<table>
 		<tr>
@@ -20,6 +21,7 @@
 			<td>Valor</td>
 			<td>Moeda</td>
 			<td>Status</td>
+			<td>Remover</td>
 		<c:forEach items="${comprovante.itens}" var="item">
 			<tr>
 				<td>${item.pagamento.formaPagamento}</td>
@@ -28,8 +30,16 @@
 				<td>${item.pagamento.valor}</td>
 				<td>${item.pagamento.moeda}</td>
 				<td>${item.pagamento.status}</td>
+				<td>
+					<form action="${s:mvcUrl('CC#remover').arg(0, item.pagamento.id).build()}" method="post">
+						<input type="submit" value="Remover"/>
+					</form>
+				</td>
 			<tr>
 		</c:forEach>
+		<form action="${s:mvcUrl('CC#gerarComprovante').build()}" method="post">
+			<input type="submit" name="gerarComprovante" value="Gerar Comprovantes" />
+		</form>
 	</table>
 	<div>Total dos comprovantes: ${comprovante.total}</div>
 </body>

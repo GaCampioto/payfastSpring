@@ -13,7 +13,7 @@ public class Pagamento {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name="forma_de_pagamento")
-	private String formaPagamento;
+	private String forma_de_pagamento;
 	private double valor;
 	private String moeda;
 	private String status;
@@ -28,10 +28,10 @@ public class Pagamento {
 		this.id = id;
 	}
 	public String getFormaPagamento() {
-		return formaPagamento;
+		return forma_de_pagamento;
 	}
 	public void setFormaPagamento(String formaPagamento) {
-		this.formaPagamento = formaPagamento;
+		this.forma_de_pagamento = formaPagamento;
 	}
 	public double getValor() {
 		return valor;
@@ -73,7 +73,29 @@ public class Pagamento {
 	}
 	@Override
 	public String toString() {
-		return "Pagamento [id=" + id + ", formaPagamento=" + formaPagamento + ", valor=" + valor + ", moeda=" + moeda
+		return "Pagamento [id=" + id + ", formaPagamento=" + forma_de_pagamento + ", valor=" + valor + ", moeda=" + moeda
 				+ ", status=" + status + ", descricao=" + descricao + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pagamento other = (Pagamento) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
 }
